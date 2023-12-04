@@ -1,0 +1,6 @@
+.*.js
+*.config.js
+*.config.ts
+*.d.ts
+
+apps/web/src/components/ui/
