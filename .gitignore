@@ -62,3 +62,6 @@ lerna-debug.log*
 *.launch
 .settings/
 *.sublime-workspace
+
+# Docker volume
+packages/database/volumes
