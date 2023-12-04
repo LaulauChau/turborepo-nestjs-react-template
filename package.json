@@ -5,9 +5,9 @@
   "scripts": {
     "build": "dotenv -e .env.local -- turbo build",
     "clean": "turbo clean && rm -rf .turbo && rm -rf dist && rm -rf node_modules",
-    "db:generate": "dotenv -e .env -- turbo db:generate",
-    "db:push": "dotenv -e .env -- turbo db:push",
-    "db:studio": "dotenv -e .env -- turbo db:studio",
+    "db:generate": "dotenv -e .env.local -- turbo db:generate",
+    "db:push": "dotenv -e .env.local -- turbo db:push",
+    "db:studio": "dotenv -e .env.local -- turbo db:studio",
     "dev": "dotenv -e .env.local -- turbo dev",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "lint": "turbo lint",

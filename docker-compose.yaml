@@ -4,7 +4,7 @@ services:
   database:
     image: postgres:latest
     env_file:
-      - .env
+      - .env.local
     ports:
       - 5432:5432
     restart: always
