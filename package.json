@@ -1,6 +1,7 @@
 {
   "name": "turborepo-nestjs-react-template",
   "private": true,
+  "license": "MIT",
   "scripts": {
     "build": "dotenv -e .env.local -- turbo build",
     "clean": "turbo clean && rm -rf .turbo && rm -rf dist && rm -rf node_modules",
