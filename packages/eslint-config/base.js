@@ -7,11 +7,8 @@ module.exports = {
   env: {
     es2021: true,
   },
-  extends: [
-    'plugin:@typescript-eslint/recommended',
-    'plugin:prettier/recommended',
-  ],
-  ignorePatterns: ['dist/*', 'node_modules/*'],
+  extends: ['plugin:@typescript-eslint/recommended', 'plugin:prettier/recommended'],
+  ignorePatterns: ['dist/*', 'node_modules/*', '.eslintrc.*'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     project,
@@ -20,5 +17,12 @@ module.exports = {
   rules: {
     'import/prefer-default-export': 'off',
     'prettier/prettier': ['error', { endOfLine: 'auto' }],
+  },
+  settings: {
+    'import/resolver': {
+      typescript: {
+        project,
+      },
+    },
   },
 };
