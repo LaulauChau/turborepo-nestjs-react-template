@@ -73,8 +73,8 @@ Each application and package is 100% type-safe thanks to [TypeScript](https://ww
 
 ### Prerequisites
 
-- [Node.js](https://nodejs.org/en/) (v20.9.0 or higher)
-- [Pnpm](https://pnpm.io/) (v8.11.0 or higher)
+- [Node.js](https://nodejs.org/en/) (v20.10.0 or higher)
+- [Pnpm](https://pnpm.io/) (v8.13.1 or higher)
 - _(Optional) [Docker](https://www.docker.com/) (v24.0.6 or higher) (if you don't have a database server)_
 
 ### Installation
@@ -98,18 +98,20 @@ Each application and package is 100% type-safe thanks to [TypeScript](https://ww
    ```
 
 4. Update the Prisma schema at `packages/database/prisma/schema.prisma` to match your database schema
-   <br />
+
 5. Generate the Prisma client
 
    ```sh
    pnpm run generate
    ```
 
-6. Build the project
+6. Build the database package
 
    ```sh
-   pnpm run build
+   pnpm run build --filter=@repo/database
    ```
+
+_(Optional) You can also build all the packages after this step by running `pnpm run build` if you want to._
 
 7. Run the development server
 
