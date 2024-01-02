@@ -9,7 +9,7 @@
     "forceConsistentCasingInFileNames": true,
     "inlineSources": false,
     "isolatedModules": true,
-    "lib": ["ES2021"],
+    "lib": ["ES2022"],
     "module": "CommonJS",
     "moduleResolution": "node",
     "noUnusedLocals": false,
@@ -18,7 +18,7 @@
     "skipLibCheck": true,
     "strict": true,
     "strictNullChecks": true,
-    "target": "ES2021"
+    "target": "ES2022"
   },
   "exclude": ["node_modules"]
 }
