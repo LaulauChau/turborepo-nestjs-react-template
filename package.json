@@ -9,9 +9,10 @@
     "db:push": "dotenv -e .env.local -- turbo db:push",
     "db:studio": "dotenv -e .env.local -- turbo db:studio",
     "dev": "dotenv -e .env.local -- turbo dev",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "format": "prettier --write \"apps/**/*.{ts,tsx}\" \"packages/**/*.{ts,tsx}\"",
     "lint": "turbo lint",
-    "preinstall": "npx only-allow pnpm"
+    "preinstall": "npx only-allow pnpm",
+    "start": "dotenv -e .env.local -- turbo start"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
