@@ -12,10 +12,11 @@ This template serves as a ready-to-use monorepo for full stack development, comb
 The `web` application is served statically by the `api` application thanks to `@nestjs/serve-static`.
 
 ```ts
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule, RequestMethod } from '@nestjs/common';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 
+import { LoggerMiddleware } from '~/common/middlewares/logger.middleware';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
@@ -29,7 +30,11 @@ import { AppService } from './app.service';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(LoggerMiddleware).forRoutes({ path: '*', method: RequestMethod.ALL });
+  }
+}
 ```
 
 The `api` is proxied by the `web` application thanks to [Vite](https://vitejs.dev/)'s [proxy](https://vitejs.dev/config/#server-proxy) option.
@@ -102,27 +107,25 @@ Each application and package is 100% type-safe thanks to [TypeScript](https://ww
 5. Generate the Prisma client
 
    ```sh
-   pnpm run generate
+   pnpm run db:generate
    ```
 
-6. Build the database package
+6. Build the monorepo
 
    ```sh
-   pnpm run build --filter=@repo/database
+   pnpm run build
    ```
 
-_(Optional) You can also build all the packages after this step by running `pnpm run build` if you want to._
-
-7. Run the development server
-
-   ```sh
-   pnpm run dev
-   ```
-
-8. _(Optional) Run the database in a Docker container_
+7. _(Optional) Run the database in a Docker container_
 
    ```sh
    docker-compose up -d
+   ```
+
+8. Run in production mode
+
+   ```sh
+   pnpm run start
    ```
 
 ## License
