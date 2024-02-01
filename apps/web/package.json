@@ -1,0 +1,39 @@
+{
+  "name": "web",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "tsc && vite build",
+    "clean": "rimraf .turbo dist node_modules",
+    "dev": "vite --clearScreen false --host 0.0.0.0",
+    "lint": "eslint src --fix --max-warnings 0 --report-unused-disable-directives",
+    "preview": "vite preview",
+    "test": "vitest --run"
+  },
+  "dependencies": {
+    "@t3-oss/env-core": "^0.8.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "@testing-library/jest-dom": "^6.4.1",
+    "@testing-library/react": "^14.2.0",
+    "@types/node": "^20.11.15",
+    "@types/react": "^18.2.51",
+    "@types/react-dom": "^18.2.18",
+    "@vitejs/plugin-react-swc": "^3.6.0",
+    "autoprefixer": "^10.4.17",
+    "eslint": "^8.56.0",
+    "jsdom": "^24.0.0",
+    "postcss": "^8.4.33",
+    "rimraf": "^5.0.5",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.12",
+    "vitest": "^1.2.2"
+  }
+}
