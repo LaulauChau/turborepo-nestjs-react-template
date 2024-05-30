@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "outDir": "./dist",
+    "paths": {
+      "~/*": ["./src/*"]
+    },
+    "types": ["vitest/globals"]
+  },
+  "extends": "@repo/typescript-config/nestjs.json"
+}

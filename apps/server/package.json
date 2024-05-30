@@ -1,0 +1,53 @@
+{
+  "name": "server",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "nest build",
+    "clean": "rimraf .turbo dist node_modules",
+    "dev": "nest start --watch",
+    "start": "nest start",
+    "start:debug": "nest start --debug --watch",
+    "start:prod": "node dist/main",
+    "test": "vitest run --passWithNoTests",
+    "test:cov": "vitest run --coverage --passWithNoTests",
+    "test:debug": "vitest --inspect --inspect-brk --logHeapUsage --passWithNoTests --threads=false",
+    "test:e2e": "vitest run --config ./vitest.config.e2e.ts --passWithNoTests",
+    "test:watch": "vitest --passWithNoTests"
+  },
+  "dependencies": {
+    "@fastify/cors": "^9.0.1",
+    "@fastify/static": "^7.0.4",
+    "@nestjs/common": "^10.3.8",
+    "@nestjs/config": "^3.2.2",
+    "@nestjs/core": "^10.3.8",
+    "@nestjs/platform-fastify": "^10.3.8",
+    "@nestjs/serve-static": "^4.0.2",
+    "@repo/database": "workspace:*",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.1",
+    "reflect-metadata": "^0.2.2",
+    "rxjs": "^7.8.1"
+  },
+  "devDependencies": {
+    "@nestjs/cli": "^10.3.2",
+    "@nestjs/schematics": "^10.1.1",
+    "@nestjs/testing": "^10.3.8",
+    "@repo/typescript-config": "workspace:*",
+    "@swc/cli": "^0.3.12",
+    "@swc/core": "^1.5.22",
+    "@types/node": "^20.12.13",
+    "@types/supertest": "^6.0.2",
+    "@vitest/coverage-v8": "^1.6.0",
+    "fastify": "^4.27.0",
+    "rimraf": "^5.0.7",
+    "source-map-support": "^0.5.21",
+    "supertest": "^7.0.0",
+    "ts-loader": "^9.5.1",
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.4.5",
+    "unplugin-swc": "^1.4.5",
+    "vitest": "^1.6.0"
+  }
+}
