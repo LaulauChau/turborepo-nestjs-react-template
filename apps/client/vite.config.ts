@@ -5,7 +5,7 @@ import { defineConfig, loadEnv } from "vite";
 
 // https://vitejs.dev/config/
 const config = defineConfig(({ mode }) => {
-  const { CLIENT_PORT, SERVER_URL } = loadEnv(mode, process.cwd(), "");
+  const { CLIENT_PORT, VITE_SERVER_URL } = loadEnv(mode, process.cwd(), "");
 
   return {
     plugins: [react(), TanStackRouterVite()],
@@ -17,7 +17,7 @@ const config = defineConfig(({ mode }) => {
       proxy: {
         "/api": {
           changeOrigin: true,
-          target: SERVER_URL,
+          target: VITE_SERVER_URL,
         },
       },
     },
