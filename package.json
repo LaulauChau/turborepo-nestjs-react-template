@@ -2,18 +2,18 @@
   "name": "turborepo-nestjs-react-template",
   "private": true,
   "scripts": {
-    "build": "dotenv -e .env -- turbo build",
+    "build": "turbo build",
     "clean": "turbo clean && rimraf .turbo node_modules",
     "commit": "git-cz",
-    "db:generate": "dotenv -e .env -- turbo db:generate",
-    "db:push": "dotenv -e .env -- turbo db:push",
-    "dev": "dotenv -e .env -- turbo dev",
+    "db:generate": "turbo db:generate",
+    "db:push": "turbo db:push",
+    "dev": "turbo dev",
     "lint": "pnpm dlx @biomejs/biome check --write .",
     "preinstall": "npx only-allow pnpm",
     "prepare": "if [ \"$NODE_ENV\" != \"production\" ]; then husky; fi",
-    "start": "dotenv -e .env -- node \"apps/server/dist/main.js\"",
-    "test": "dotenv -e .env -- turbo test",
-    "test:watch": "dotenv -e .env -- turbo test:watch"
+    "start": "node \"apps/server/dist/main.js\"",
+    "test": "turbo test",
+    "test:watch": "turbo test:watch"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.8.0",
@@ -22,7 +22,6 @@
     "@commitlint/cz-commitlint": "^19.2.0",
     "@commitlint/types": "^19.0.3",
     "commitizen": "^4.3.0",
-    "dotenv-cli": "^7.4.2",
     "husky": "^9.0.11",
     "inquirer": "^9.2.23",
     "lint-staged": "^15.2.5",
