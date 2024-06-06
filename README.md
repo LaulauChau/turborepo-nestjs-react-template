@@ -67,7 +67,9 @@ git clone https://github.com/LaulauChau/turborepo-nestjs-react-template
 2. Create a `.env` file from the `.env.example` file and update the environment variables if needed:
 
 ```bash
-cp .env.example .env
+cp apps/client/.env.example apps/client/.env
+cp apps/server/.env.example apps/server/.env
+cp packages/database/.env.example packages/database/.env
 ```
 
 3. Install the dependencies:

@@ -38,11 +38,18 @@ if [ -n "$LOCKFILES" ]; then
   rm -rf $LOCKFILES node_modules
 fi
 
-# Create the .env file if it doesn't exist
-if [ ! -f .env ]; then
-  echo "Creating .env file..."
-  cp .env.example .env
-fi
+# Define the directories and corresponding environment files
+directories=(apps/client apps/server packages/database)
+files=(.env.example .env)
+
+# Loop over the directories
+for dir in "${directories[@]}"; do
+  # Check if the .env file exists, if not, copy the .env.example file
+  if [ ! -f "$dir/${files[1]}" ]; then
+    cp "$dir/${files[0]}" "$dir/${files[1]}"
+  fi
+done
+
 
 # Install dependencies
 pnpm install --frozen-lockfile
