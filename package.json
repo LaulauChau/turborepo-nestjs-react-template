@@ -8,7 +8,7 @@
     "db:generate": "dotenv -e .env -- turbo db:generate",
     "db:push": "dotenv -e .env -- turbo db:push",
     "dev": "dotenv -e .env -- turbo dev",
-    "lint": "pnpm dlx @biomejs/biome check --apply .",
+    "lint": "pnpm dlx @biomejs/biome check --write .",
     "preinstall": "npx only-allow pnpm",
     "prepare": "if [ \"$NODE_ENV\" != \"production\" ]; then husky; fi",
     "start": "dotenv -e .env -- node \"apps/server/dist/main.js\"",
