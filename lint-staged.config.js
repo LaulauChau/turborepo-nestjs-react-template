@@ -1,6 +1,6 @@
 const config = {
   "*": [
-    "biome check --apply --no-errors-on-unmatched --files-ignore-unknown=true",
+    "biome check --write --no-errors-on-unmatched --files-ignore-unknown=true",
   ],
 };
 
