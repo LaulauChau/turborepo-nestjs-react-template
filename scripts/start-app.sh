@@ -3,58 +3,76 @@
 set -e
 
 # Check if Node.js is installed
+echo "Checking if Node.js is installed..."
+
 if ! command -v node &> /dev/null; then
   echo "Node.js is not installed. Please install Node.js to run this application."
   exit 1
 fi
 
-# Check if Node version is at least 20
-NODE_VERSION=$(node -v | cut -d. -f1 | sed 's/[^0-9]*//g')
+# Check if Node version is at least 20.14
+echo "Checking Node.js version..."
 
-if [ "$NODE_VERSION" -lt 20 ]; then
-  echo "Node.js version 20 or greater is required to run this application."
+NODE_MAJOR_VERSION=$(node -v | cut -d. -f1 | sed 's/[^0-9]*//g')
+NODE_MINOR_VERSION=$(node -v | cut -d. -f2 | sed 's/[^0-9]*//g')
+
+if [ "$NODE_MAJOR_VERSION" -lt 20 ] && [ "$NODE_MINOR_VERSION" -lt 14 ]; then
+  echo "Node.js version 20.14 or greater is required to run this application. Please update Node.js."
   exit 1
 fi
 
 # Check if pnpm is installed
+echo "Checking if pnpm is installed..."
+
 if ! command -v pnpm &> /dev/null; then
   echo "pnpm is not installed. Installing pnpm..."
   curl -fsSL https://get.pnpm.io/install.sh | sh -
 fi
 
-# Check if pnpm version is at least 9
-PNPM_VERSION=$(pnpm -v | cut -d. -f1 | sed 's/[^0-9]*//g')
+# Check if pnpm version is at least 9.2
+echo "Checking pnpm version..."
 
-if [ "$PNPM_VERSION" -lt 9 ]; then
-  echo "pnpm version 9 or greater is required to run this application. Updating pnpm..."
+PNPM_MAJOR_VERSION=$(pnpm -v | cut -d. -f1 | sed 's/[^0-9]*//g')
+PNPM_MINOR_VERSION=$(pnpm -v | cut -d. -f2 | sed 's/[^0-9]*//g')
+
+if [ "$PNPM_MAJOR_VERSION" -lt 9 ] && [ "$PNPM_MINOR_VERSION" -lt 2 ]; then
+  echo "pnpm version 9.2 or greater is required to run this application. Updating pnpm..."
   pnpm add -g pnpm@latest
 fi
 
 # Check if another package manager is being used
-LOCKFILES=$(find . -type f -name "yarn.lock" -o -name "package-lock.json" -o -name "bun.lockb")
+echo "Checking for lock files..."
 
-if [ -n "$LOCKFILES" ]; then
-  echo "Another package manager is being used. Cleaning up lock files..."
-  rm -rf $LOCKFILES node_modules
-fi
+LOCK_FILES=("package-lock.json" "yarn.lock" "bun.lockb")
 
-# Define the directories and corresponding environment files
-directories=(apps/client apps/server packages/database)
-files=(.env.example .env)
-
-# Loop over the directories
-for dir in "${directories[@]}"; do
-  # Check if the .env file exists, if not, copy the .env.example file
-  if [ ! -f "$dir/${files[1]}" ]; then
-    cp "$dir/${files[0]}" "$dir/${files[1]}"
+for LOCK_FILE in ${LOCK_FILES[@]}; do
+  if [ -f $LOCK_FILE ]; then
+    echo "Found $LOCK_FILE. Removing $LOCK_FILE..."
+    rm $LOCK_FILE node_modules
   fi
 done
 
+# Create the .env file if it doesn't exist
+echo "Checking for .env file..."
+
+DIRECTORIES=(apps/client apps/server packages/database)
+files=(.env.example .env)
+
+for DIRECTORY in ${DIRECTORIES[@]}; do
+  if [ ! -f "$DIRECTORY/${files[1]}" ]; then
+    echo "Creating .env file in $DIRECTORY..."
+    cp "$DIRECTORY/${files[0]}" "$DIRECTORY/${files[1]}"
+  fi
+done
 
 # Install dependencies
+echo "Installing dependencies..."
+
 pnpm install --frozen-lockfile
 
 # Build the application
+echo "Building the application..."
+
 pnpm run build
 
 # Ask the user if they want to start the application in development mode or production mode
@@ -62,9 +80,9 @@ echo "Do you want to start the application in development mode or production mod
 read -p "Enter 'dev or 'prod': " MODE
 
 if [ "$MODE" == "prod" ]; then
-  # Start the application in production mode
+  echo "Starting the application in production mode..."
   pnpm run start
 else
-  # Start the application in development mode
+  echo "Starting the application in development mode..."
   pnpm run dev
 fi

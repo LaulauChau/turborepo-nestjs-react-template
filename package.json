@@ -36,9 +36,9 @@
   "packageManager": "pnpm@9.2.0",
   "engines": {
     "bun": "please-use-pnpm",
-    "node": ">=20",
+    "node": ">=20.14.0",
     "npm": "please-use-pnpm",
-    "pnpm": ">=9",
+    "pnpm": ">=9.2.0",
     "yarn": "please-use-pnpm"
   }
 }
